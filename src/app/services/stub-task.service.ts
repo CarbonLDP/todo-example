@@ -19,7 +19,47 @@ export class StubTaskService implements TaskService.Class {
 					description: "Gaze into it while your thoughts drift away",
 
 					dueDate: new Date( 10, 11, 2016 ),
-					project: projects[ 0 ]
+					project: projects[ 0 ],
+
+					comments: [
+						{
+							author: {
+								name: "John Cena",
+								avatar: "http://www.famousbirthdays.com/headshots/john-cena-4.jpg"
+							},
+							content: "This is Jooooooooohn Cena!!",
+							createdOn: new Date( 7, 10, 2016 ),
+							replies: [
+								{
+									author: {
+										name: "Albert Einstein",
+										avatar: "https://pbs.twimg.com/profile_images/661244915725287424/C7vPnSSE.jpg"
+									},
+									content: "e=mc2",
+									createdOn: new Date( 6, 10, 2016 ),
+									replies: [
+										{
+											author: {
+												name: "Newton",
+												avatar: "https://imgs-steps-dragoart-386112.c.cdn77.org/how-to-draw-isaac-newton-step-8_1_000000130387_5.gif"
+											},
+											content: "F=ma",
+											createdOn: new Date( 5, 10, 2016 ),
+											replies: []
+										}
+									]
+								}
+							]
+						},
+						{
+							author: {
+								name: "Michael Jackson",
+								avatar: "http://blavity.blavity.netdna-cdn.com/wp-content/uploads/2016/01/classic_motown_com.jpg"
+							},
+							content: "Yeah!",
+							createdOn: new Date( 8, 10, 2016 ),
+						}
+					]
 				}
 			] );
 
@@ -59,6 +99,17 @@ export class StubTaskService implements TaskService.Class {
 					resolve( task );
 				}, 2000 );
 			} );
+		} );
+	}
+
+	save( task:Task ):Promise<Task> {
+		// Do nothing
+		// We are passing the object that's saved directly in our "database", so any changes to it are
+		// automatically persisted
+		return new Promise( ( resolve:( result:Task ) => void, reject:() => void ) => {
+			setTimeout( () => {
+				resolve( task );
+			}, 2000 );
 		} );
 	}
 }

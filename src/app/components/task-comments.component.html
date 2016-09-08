@@ -1,0 +1,28 @@
+<h3 class="ui dividing header">Comments</h3>
+<form class="ui form"
+      [class.loading]="loading"
+      (submit)="onCommentFormSubmit()"
+      #commentForm="ngForm"
+>
+	<div class="field"
+	     [class.error]="! content.valid && content.touched"
+	>
+		<textarea rows="3" name="content"
+		          required
+		          [(ngModel)]="model.content"
+		          #content="ngModel"
+		></textarea>
+	</div>
+	<button type="submit" class="ui blue labeled submit icon button">
+		<i class="icon edit"></i> Comment
+	</button>
+</form>
+<div class="task-comment"
+     *ngFor="let comment of comments"
+     [comment]="comment"
+></div>
+<div
+	*ngIf="! comments || comments.length === 0"
+>
+	This task doesn't have comments yet
+</div>

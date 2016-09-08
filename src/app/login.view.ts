@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 
 import * as HTTP from "carbonldp/HTTP";
 
-import { AuthService } from "angular2-carbonldp/services";
+import { AuthService } from "app/services";
 
 import template from "./login.view.html!text";
 import style from "./login.view.css!text";
@@ -33,7 +33,7 @@ export class LoginView implements OnInit, OnDestroy {
 
 	private onLogin():void {
 		this.authService.login( this.model.username, this.model.password, false ).then( () => {
-			this.router.navigate( [ "/home" ] );
+			this.router.navigate( [ "/dashboard" ] );
 		}).catch( ( error ) => {
 			if( error instanceof HTTP.Errors.UnauthorizedError ) {
 				this.error = error.name;

@@ -8,7 +8,5 @@ export interface Comment {
 
 	createdOn:Date;
 
-	task:Task;
-
-	replies:Comment[];
+	replies?:Comment[];
 }

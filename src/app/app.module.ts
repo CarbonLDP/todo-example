@@ -3,7 +3,8 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 
 import { CARBON_PROVIDERS } from "angular2-carbonldp/boot";
-import { CARBON_SERVICES_PROVIDERS } from "angular2-carbonldp/services";
+import { CARBON_SERVICES_PROVIDERS, AuthService } from "angular2-carbonldp/services";
+import { ExtendedCarbonAuthService } from "app/services/carbon-auth.service";
 
 import { STUBBED_SERVICES_PROVIDERS } from "app/stub-services";
 
@@ -22,6 +23,11 @@ let serviceProviders:any[] = [];
 
 if( SERVICES === "carbon" ) {
 	serviceProviders.push.apply( serviceProviders, CARBON_SERVICES_PROVIDERS );
+	let authProvider:any = serviceProviders.find( ( provider ) => {
+		return provider.provide === AuthService.Token;
+	} );
+	authProvider.useClass = ExtendedCarbonAuthService;
+
 } else if( SERVICES === "stubbed" ) {
 	serviceProviders.push.apply( serviceProviders, STUBBED_SERVICES_PROVIDERS );
 } else {

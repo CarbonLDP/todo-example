@@ -2,6 +2,8 @@ import { Component, Input } from "@angular/core";
 
 import { Task } from "app/models/task";
 
+import { TaskCommentsComponent } from "app/components/task-comments.component";
+
 import template from "./task.component.html!text";
 import style from "./task.component.css!text";
 
@@ -11,7 +13,9 @@ import style from "./task.component.css!text";
 	styles: [
 		style
 	],
-	directives: [],
+	directives: [
+		TaskCommentsComponent
+	],
 	host: {
 		class: "ui basic segment"
 	}

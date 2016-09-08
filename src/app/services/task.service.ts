@@ -7,6 +7,8 @@ export interface Class {
 	getAll( project:Project ):Promise<Task[]>;
 
 	create( project:Project, task:Task ):Promise<Task>;
+
+	save( task:Task ):Promise<Task>;
 }
 
 export const Token:OpaqueToken = new OpaqueToken( "TaskService" );

@@ -1,0 +1,47 @@
+<a class="avatar">
+	<img [src]="comment.author.avatar">
+</a>
+<div class="content">
+	<a class="author">{{comment.author.name}}</a>
+	<div class="metadata">
+		<span class="date">{{comment.createdOn | fromNow}}</span>
+	</div>
+	<div class="text">
+		{{comment.content}}
+	</div>
+	<div class="actions">
+		<a class="reply"
+		   (click)="enableReplyMode()"
+		>Reply</a>
+	</div>
+</div>
+<div class="comments"
+     *ngIf="(replies && replies.length !== 0) || replyModeEnabled"
+>
+	<form class="ui reply form"
+	      *ngIf="replyModeEnabled"
+	      [class.loading]="loading"
+	      (submit)="onCommentFormSubmit()"
+	      #commentForm="ngForm"
+	>
+		<div class="field"
+		     [class.error]="! content.valid && content.touched"
+		>
+			<textarea class="reply" rows="3" name="content"
+			          required
+			          [(ngModel)]="model.content"
+			          #content="ngModel"
+			></textarea>
+		</div>
+		<button type="submit" class="ui blue labeled submit icon button">
+			<i class="icon edit"></i> Add Reply
+		</button>
+		<button type="button" class="ui button"
+		        (click)="disableReplyMode()"
+		>Cancel</button>
+	</form>
+	<div class="task-comment"
+	     *ngFor="let reply of replies"
+	     [comment]="reply"
+	></div>
+</div>
