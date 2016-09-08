@@ -1,0 +1,13 @@
+{
+  "app": {
+    "debug": true,
+    "services": "stubbed"
+  },
+  "url": {
+    "base": "/src/"
+  },
+  "carbon": {
+    "domain": "carbonldp.base22.io",
+    "https": true
+  }
+}

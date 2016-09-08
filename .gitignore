@@ -1,0 +1,19 @@
+src/app/**/*.js
+src/app/**/*.js.map
+
+src/app/config.ts
+
+dist/site/
+
+# WebStorm files
+.idea/
+
+# NPM Dependencies
+**/node_modules/
+
+# JSPM Dependencies
+**/jspm_packages/
+
+# Typings
+**/typings/globals/
+**/typings/index.d.ts

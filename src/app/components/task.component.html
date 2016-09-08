@@ -1,0 +1,93 @@
+<h1 class="ui dividing header">{{task.title}}</h1>
+<div class="ui middle aligned two column grid">
+	<div class="column">
+		Assigned to: <img class="ui avatar image" src="assets/images/wireframe.png"> <span>John</span>
+	</div>
+	<div class="right aligned column">
+		<button class="ui compact button">Mark as Complete</button>
+		<button class="ui compact labeled icon button">
+			<i class="write icon"></i>
+			Edit
+		</button>
+	</div>
+</div>
+<p>
+	{{task.description}}
+</p>
+<div class="middle aligned">
+	Labels:
+	<template *ngIf="task.labels">
+		<a class="ui label"
+		   *ngFor="let label of task.labels"
+		>{{task.name}}</a>
+	</template>
+	<template *ngIf="! task.labels">
+		None
+	</template>
+</div>
+<div class="task-comments ui comments">
+	<h3 class="ui dividing header">Comments</h3>
+	<form class="ui form">
+		<div class="field">
+			<textarea rows="3"></textarea>
+		</div>
+		<div class="ui blue labeled submit icon button">
+			<i class="icon edit"></i> Submit
+		</div>
+	</form>
+	<div class="comment">
+		<a class="avatar"><img src="assets/images/wireframe.png"></a>
+		<div class="content">
+			<a class="author">Author</a>
+			<div class="metadata">
+				<span class="date">Today at 5:42PM</span>
+			</div>
+			<div class="text">
+				Here's what the author said...
+			</div>
+			<div class="actions">
+				<a class="reply">Reply</a>
+			</div>
+		</div>
+		<div class="comments">
+			<div class="comment">
+				<a class="avatar"><img src="assets/images/wireframe.png"></a>
+				<div class="content">
+					<a class="author">Author</a>
+					<div class="metadata">
+						<span class="date">Today at 5:42PM</span>
+					</div>
+					<div class="text">
+						Here's what the author said...
+					</div>
+					<div class="actions">
+						<a class="reply">Reply</a>
+					</div>
+				</div>
+				<form class="ui reply form">
+					<div class="field">
+						<textarea rows="3"></textarea>
+					</div>
+					<div class="ui blue labeled submit icon button">
+						<i class="icon edit"></i> Submit
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="comment">
+		<a class="avatar"><img src="assets/images/wireframe.png"></a>
+		<div class="content">
+			<a class="author">Author</a>
+			<div class="metadata">
+				<span class="date">Today at 5:42PM</span>
+			</div>
+			<div class="text">
+				Here's what the author said...
+			</div>
+			<div class="actions">
+				<a class="reply">Reply</a>
+			</div>
+		</div>
+	</div>
+</div>

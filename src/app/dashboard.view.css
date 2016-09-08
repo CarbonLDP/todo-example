@@ -1,0 +1,102 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body.view--dashboard {
+    display: flex;
+    flex-direction: column;
+
+    background: #364150;
+}
+
+body.view--dashboard app {
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    flex: 1;
+}
+
+.dashboard {
+    display: flex;
+    flex-direction: row;
+
+    flex: 1 1 100%;
+    height: 100%;
+}
+
+.dashboard__content {
+    flex: 1 1 100%;
+    height: 100%;
+
+    background: #EEF1F5;
+}
+
+.dashboard__content.ui.grid {
+    margin: 0;
+}
+
+.dashboard__sidebar {
+    display: flex !important;
+    flex-direction: column;
+}
+
+.dashboard__sidebar > .project-list,
+.dashboard__sidebar > .label-list {
+    flex: 1;
+}
+
+.dashboard__sidebar > .project-list {
+    margin-bottom: 1em;
+}
+
+.project-list__title,
+.label-list__title,
+.task-panel__title {
+    flex: 0 0 auto;
+}
+
+.project-list__content,
+.label-list__content,
+.task-panel__content {
+    flex: 1 1 auto;
+}
+
+.segment-panel {
+    display: flex !important;
+    flex-direction: column;
+}
+
+.segment-panel__title {
+    flex: 0 0 auto;
+}
+
+.segment-panel__title .ui.grid {
+    height: 3em;
+}
+
+.segment-panel__title .ui.grid > .column {
+    padding: 0 1em;
+}
+
+.segment-panel__content {
+    flex: 1 1 auto;
+
+    overflow: auto;
+}
+
+.task-panel__content {
+    display: flex;
+    flex-direction: column;
+}
+
+.task-panel__content > .ui.grid {
+    flex: 1;
+}
+
+.task-list {
+    margin-top: 1em;
+}

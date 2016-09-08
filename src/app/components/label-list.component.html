@@ -1,0 +1,23 @@
+<div class="label-list__title segment-panel__title ui top attached segment">
+	<div class="ui middle aligned one column grid">
+		<div class="column">
+			Labels
+		</div>
+	</div>
+</div>
+<div class="label-list__content segment-panel__content ui attached segment">
+	<div class="ui middle aligned selection list">
+		<div class="label-item item"
+		     *ngFor="let label of labels"
+		     (click)="onLabelClick( label )"
+		     [class.label-item--selected]="selectedLabels.indexOf( label ) !== -1"
+		>
+			<div class="right floated content">
+				<div class="ui label">{{ label.tasks ? label.tasks.length : 0 }}</div>
+			</div>
+			<div class="label-item__title middle aligned content">
+				{{ label.name }}
+			</div>
+		</div>
+	</div>
+</div>

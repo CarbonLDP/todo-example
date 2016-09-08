@@ -1,0 +1,63 @@
+:host {
+    background: #fbf6ed !important;
+    cursor: pointer;
+}
+:host:hover {
+    background: #ffefd1 !important;
+}
+:host.task-item--selected {
+    background: #ffefd1 !important;
+}
+
+:host.ui.red.segment {
+    border-top: 0;
+    border-left: 2px solid #DB2828;
+}
+:host.ui.orange.segment {
+    border-top: 0;
+    border-left: 2px solid #F2711C;
+}
+:host.ui.yellow.segment {
+    border-top: 0;
+    border-left: 2px solid #FBBD08;
+}
+:host.ui.olive.segment {
+    border-top: 0;
+    border-left: 2px solid #B5CC18;
+}
+:host.ui.green.segment {
+    border-top: 0;
+    border-left: 2px solid #21BA45;
+}
+:host.ui.teal.segment {
+    border-top: 0;
+    border-left: 2px solid #00B5AD;
+}
+:host.ui.blue.segment {
+    border-top: 0;
+    border-left: 2px solid #2185D0;
+}
+:host.ui.violet.segment {
+    border-top: 0;
+    border-left: 2px solid #6435C9;
+}
+:host.ui.purple.segment {
+    border-top: 0;
+    border-left: 2px solid #A333C8;
+}
+:host.ui.pink.segment {
+    border-top: 0;
+    border-left: 2px solid #E03997;
+}
+:host.ui.brown.segment {
+    border-top: 0;
+    border-left: 2px solid #A5673F;
+}
+:host.ui.grey.segment {
+    border-top: 0;
+    border-left: 2px solid #767676;
+}
+:host.ui.black.segment {
+    border-top: 0;
+    border-left: 2px solid #1B1C1D;
+}

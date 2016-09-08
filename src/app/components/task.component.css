@@ -1,0 +1,7 @@
+.task-comments.ui.comments {
+    max-width: none;
+}
+
+.ui.reply.form textarea {
+    height: auto;
+}

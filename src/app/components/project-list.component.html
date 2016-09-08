@@ -1,0 +1,65 @@
+<div class="project-list__title segment-panel__title ui top attached segment">
+	<div class="ui middle aligned two column grid"
+	     *ngIf="! creationModeEnabled"
+	>
+		<div class="column">
+			Projects
+		</div>
+		<div class="right aligned column">
+			<button class="ui basic green tiny icon button"
+			        (click)="enableCreationMode()"
+			        [class.loading]="loading"
+			        [disabled]="loading"
+			>
+				<i class="plus icon"></i>
+			</button>
+		</div>
+	</div>
+	<div class="ui middle aligned one column grid"
+	     *ngIf="creationModeEnabled"
+	>
+		<div class="column">
+			New Project
+		</div>
+	</div>
+</div>
+<div class="project-list__content segment-panel__content ui attached segment"
+     [class.loading]="loading"
+>
+	<div class="ui middle aligned selection list"
+	     *ngIf="! creationModeEnabled"
+	>
+		<div class="project-item item"
+		     *ngFor="let project of projects"
+		     (click)="selectProject( project )"
+		     [class.project-item--selected]="project === selectedProject"
+		>
+			<div class="right floated content">
+				<div class="ui label">{{ project.tasks ? project.tasks.length : 0 }}</div>
+			</div>
+			<div class="project-item__title middle aligned content">
+				{{ project.title }}
+			</div>
+		</div>
+	</div>
+	<form class="ui form"
+	      *ngIf="creationModeEnabled"
+	      (submit)="createProject()"
+	      #projectForm="ngForm"
+	>
+		<div class="required field"
+		     [class.error]="! title.valid && title.touched"
+		>
+			<label>Name</label>
+			<input type="text" name="title" placeholder="Portal Creation"
+			       [(ngModel)]="model.title"
+			       required
+			       #title="ngModel"
+			>
+		</div>
+		<button class="ui green button" type="submit">Create</button>
+		<button class="ui button" type="button"
+		        (click)="disableCreationMode()"
+		>Cancel</button>
+	</form>
+</div>

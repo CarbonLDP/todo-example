@@ -1,0 +1,35 @@
+<h1 class="login__header">Sign In</h1>
+<div class="ui stacked segment login__container">
+    <div class="ui error message" *ngIf="error">
+        <template [ngIf]="error === 'UnauthorizedError'">
+            <div class="header">Bad Credentials</div>
+            <p>Please check them and try again</p>
+        </template>
+        <template [ngIf]="error === 'UnknownError'">
+            <div class="header">Unknown Error</div>
+            <p>Something went wrong, tell the developers</p>
+        </template>
+    </div>
+    <form class="ui form" *ngIf="active" (submit)="onLogin()" #loginForm="ngForm">
+        <div class="field" [class.error]="! username.valid && username.touched">
+            <input class="login__input" type="text" placeholder="Username"
+                   name="username"
+                   required
+                   [(ngModel)]="model.username"
+                   #username="ngModel"
+            />
+        </div>
+        <div class="field" [class.error]="! password.valid && password.touched">
+            <input class="login__input" type="password" placeholder="Password"
+                   name="password"
+                   required
+                   [(ngModel)]="model.password"
+                   #password="ngModel"
+            />
+        </div>
+        <button class="fluid ui button login__submit" type="submit">Log In</button>
+    </form>
+</div>
+<div class="ui center aligned message">
+    Don't have an account? <a href="javascript:void(0);">Sign Up</a>
+</div>

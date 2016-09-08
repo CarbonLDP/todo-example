@@ -1,0 +1,20 @@
+{
+	"compilerOptions": {
+		"module": "system",
+		"target": "es5",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"noImplicitAny": false,
+		"moduleResolution": "node",
+		"baseUrl": ".",
+		"paths": {
+			"app/*": [ "src/app/*" ]
+		}
+	},
+	"exclude": [
+		"node_modules",
+		"jspm_packages",
+		"typings/main",
+		"typings/main.d.ts"
+	]
+}

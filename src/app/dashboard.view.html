@@ -1,0 +1,66 @@
+<div class="dashboard__content ui grid">
+	<aside class="dashboard__sidebar three wide column">
+		<div class="project-list"
+		     [projects]="projects"
+		     [loading]="loadingProjects"
+		     [selectedProject]="selectedProject"
+		     (selectedProjectChange)="onSelectedProjectChange( $event )"
+		     (projectCreate)="onProjectCreate( $event )"
+		></div>
+		<div class="label-list"
+		     [(labels)]="labels"
+		></div>
+	</aside>
+	<div class="task-panel segment-panel thirteen wide column"
+	     *ngIf="selectedProject"
+	>
+		<div class="task-panel__title segment-panel__title ui top attached segment">
+			<div class="ui middle aligned two column grid">
+				<div class="column">
+					{{selectedProject.title}} Tasks
+				</div>
+				<div class="right aligned column">
+					<!--<button class="ui basic green tiny icon button">-->
+						<!--<i class="plus icon"></i>-->
+					<!--</button>-->
+				</div>
+			</div>
+		</div>
+		<div class="task-panel__content segment-panel__content ui attached segment">
+			<div class="ui grid">
+				<div class="seven wide column">
+					<button class="ui labeled green icon button"
+					        (click)="enableTaskCreationMode()"
+					>
+						<i class="plus icon"></i>
+						New Task
+					</button>
+					<div class="task-list"
+					     [tasks]="tasks"
+					     [(selectedTask)]="selectedTask"
+					></div>
+					<div class="ui active inverted dimmer"
+						*ngIf="taskCreationModeEnabled || loadingTasks"
+					>
+						<div class="ui text loader"
+						     *ngIf="loadingTasks"
+						></div>
+					</div>
+				</div>
+				<div class="nine wide column">
+					<div class="task"
+					     *ngIf="selectedTask"
+					     [task]="selectedTask"
+					></div>
+					<div class="task-form"
+					     *ngIf="taskCreationModeEnabled"
+					     [project]="selectedProject"
+					     (save)="onTaskCreate( $event )"
+					     (cancel)="disableTaskCreationMode()"
+					>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

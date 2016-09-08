@@ -1,0 +1,27 @@
+<p *ngIf="task.assignedTo">
+	<img class="task-item__author-avatar ui avatar image" [src]="task.assignedTo.avatar">
+	<span class="task-item__author-label">
+		{{task.assignedTo.name}}
+	</span>
+</p>
+<p *ngIf="! task.assignedTo">
+	<img class="task-item__author-avatar ui avatar image" src="assets/images/wireframe.png">
+	<span class="task-item__author-label">UNASSIGNED</span>
+</p>
+<p>
+	{{task.title}}
+</p>
+<div class="ui grid">
+	<div class="six wide column">
+		<i class="calendar icon"></i> {{ task.dueDate | shortDate }}
+	</div>
+	<div class="task-item__label-list ten wide column"
+	     *ngIf="task.labels"
+	>
+		<div class="ui label"
+		     *ngFor="let label of task.labels"
+		>
+			{{label.name}}
+		</div>
+	</div>
+</div>

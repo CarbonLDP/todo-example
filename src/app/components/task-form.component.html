@@ -1,0 +1,68 @@
+<form class="ui form"
+      *ngIf="active"
+      [class.loading]="loading"
+      (submit)="submit()"
+      #taskForm="ngForm"
+>
+	<div class="required field"
+	     [class.error]="! title.valid && title.touched"
+	>
+		<label>Title</label>
+		<input type="text" name="title" placeholder="Walk the dog"
+		       required
+		       [(ngModel)]="task.title"
+		       #title="ngModel"
+		>
+	</div>
+	<div class="required field"
+	     [class.error]="! description.valid && description.touched"
+	>
+		<label>Description</label>
+		<textarea name="description"
+		          required
+		          [(ngModel)]="task.description"
+		          #description="ngModel"
+		></textarea>
+	</div>
+	<div class="required field"
+	     [class.error]="! dueDate.valid && dueDate.touched"
+	>
+		<label>Due Date</label>
+		<div class="ui left icon input">
+			<input type="text" placeholder="DD/MM/YYYY" name="dueDate"
+			       required
+			       [(ngModel)]="model.dueDate"
+			       #dueDate="ngModel"
+			>
+			<i class="calendar icon"></i>
+		</div>
+	</div>
+	<div class="field"
+	     [class.error]="! assignedTo.valid && assignedTo.touched"
+	>
+		<label>Assigned To</label>
+		<div class="ui left icon input">
+			<input type="text" placeholder="John Snow" name="assignee"
+			       [(ngModel)]="model.assignedTo"
+			       #assignedTo="ngModel"
+			>
+			<i class="user icon"></i>
+		</div>
+	</div>
+	<div class="field"
+	     [class.error]="! labels.valid && labels.touched"
+	>
+		<label>Labels</label>
+		<div class="ui left icon input">
+			<input type="text" placeholder="website, clients" name="labels"
+			       [(ngModel)]="model.labels"
+			       #labels="ngModel"
+			>
+			<i class="tag icon"></i>
+		</div>
+	</div>
+	<button type="submit" class="ui green button">Create</button>
+	<button type="button" class="ui button"
+	        (click)="cancel()"
+	>Cancel</button>
+</form>

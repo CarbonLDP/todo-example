@@ -1,0 +1,16 @@
+<div class="task-item"
+     *ngFor="let task of tasks"
+     [task]="task"
+     (click)="onTaskSelect( task )"
+     [class.task-item--selected]="selectedTask === task"
+></div>
+<div class=""
+     *ngIf="! tasks || tasks.length === 0"
+>
+	There are no tasks in this project
+</div>
+<div class="ui active inverted dimmer"
+     *ngIf="loading"
+>
+	<div class="ui text loader"></div>
+</div>

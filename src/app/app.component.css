@@ -1,0 +1,19 @@
+body {
+    font-size: 16px;
+}
+
+code {
+    font-size: .8em;
+
+    background: #dfdfdf;
+}
+
+a {
+    color: #07C;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #07C;
+    text-decoration: none;
+}
