@@ -1,7 +1,17 @@
 <h1 class="ui dividing header">{{task.title}}</h1>
 <div class="ui middle aligned two column grid">
 	<div class="column">
-		Assigned to: <img class="ui avatar image" src="assets/images/wireframe.png"> <span>John</span>
+		Assigned to:
+		<template [ngIf]="task.assignedTo">
+			<img class="task-item__author-avatar ui avatar image" [src]="task.assignedTo.avatar">
+			<span class="task-item__author-label">
+				{{task.assignedTo.name}}
+			</span>
+		</template>
+		<template [ngIf]="! task.assignedTo">
+			<img class="task-item__author-avatar ui avatar image" src="assets/images/wireframe.png">
+			<span class="task-item__author-label">UNASSIGNED</span>
+		</template>
 	</div>
 	<div class="right aligned column">
 		<button class="ui compact button">Mark as Complete</button>

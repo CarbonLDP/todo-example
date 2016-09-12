@@ -11,7 +11,7 @@ import { Project } from "app/models/project";
 import { Task } from "app/models/task";
 import { User } from "app/models/user";
 
-import { ProjectService, TaskService } from "app/services";
+import { ProjectService, TaskService, UserService } from "app/services";
 
 import template from "./dashboard.view.html!text";
 import style from "./dashboard.view.css!text";
@@ -47,12 +47,18 @@ export class DashboardView implements OnInit, OnDestroy {
 	private taskCreationModeEnabled:boolean = false;
 
 	constructor( @Inject( ProjectService.Token ) private projectService:ProjectService.Class,
-	             @Inject( TaskService.Token ) private taskService:TaskService.Class ) {}
+	             @Inject( TaskService.Token ) private taskService:TaskService.Class,
+	             @Inject( UserService.Token ) private userService:UserService.Class ) {}
 
 	ngOnInit():void {
 		document.querySelector( "body" ).classList.add( "view--dashboard" );
 
-		this.loadProjects();
+		this.loadingProjects = true;
+		this.loadUsers().then( () => {
+			return this.loadProjects();
+		} ).then( () => {
+			this.loadingProjects = false;
+		} );
 	}
 
 	ngOnDestroy():void {
@@ -77,17 +83,25 @@ export class DashboardView implements OnInit, OnDestroy {
 
 	onTaskCreate( task:Task ):void {
 		this.tasks.unshift( task );
+		this.filterTasks();
 		this.disableTaskCreationMode();
 		this.selectedTask = task;
 	}
 
-	loadProjects():void {
-		this.loadingProjects = true;
-		this.projectService.getAll().then( ( projects:Project[] ) => {
-			this.loadingProjects = false;
+	loadUsers():Promise<User[]> {
+		return this.userService.getAll().then( ( users:User[] ) => {
+			this.users = users;
+			return this.users;
+		} );
+	}
+
+	loadProjects():Promise<Project[]> {
+		return this.projectService.getAll().then( ( projects:Project[] ) => {
 			this.projects = projects;
 
 			if( this.projects.length !== 0 ) this.selectProject( this.projects[ 0 ] );
+
+			return this.projects;
 		} );
 	}
 

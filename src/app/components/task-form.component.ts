@@ -3,6 +3,7 @@ import { NgForm } from "@angular/forms";
 
 import { Task } from "app/models/task";
 import { Project } from "app/models/project";
+import { User } from "app/models/user";
 
 import { TaskService } from "app/services";
 
@@ -17,6 +18,7 @@ import template from "./task-form.component.html!text";
 export class TaskFormComponent implements OnInit {
 	@Input( "task" ) task:Task;
 	@Input( "project" ) project:Project;
+	@Input( "users" ) users:User[];
 
 	@Output( "save" ) saveEventEmitter:EventEmitter<Task> = new EventEmitter<Task>();
 	@Output( "cancel" ) cancelEventEmitter:EventEmitter<any> = new EventEmitter<any>();
@@ -31,6 +33,9 @@ export class TaskFormComponent implements OnInit {
 	constructor( @Inject( TaskService.Token ) private taskService:TaskService.Class ) {}
 
 	ngOnInit():void {
+		// TODO: Add semantic typings
+		// (<any>$( "select.dropdown" )).dropdown();
+
 		this.editMode = ! ! this.task;
 
 		if( ! this.editMode ) {
@@ -51,6 +56,9 @@ export class TaskFormComponent implements OnInit {
 
 		this.loading = true;
 		this.task.labels = this.getLabelStrings();
+		if( typeof this.model.assignedTo !== "undefined" && this.model.assignedTo !== null && this.model.assignedTo !== "" ) {
+			this.task.assignedTo = this.users[ this.model.assignedTo ];
+		}
 
 		this.taskService.create( this.project, this.task ).then( ( task ) => {
 			this.loading = false;
