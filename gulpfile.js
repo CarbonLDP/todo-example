@@ -26,6 +26,7 @@ const config = {
 		"node_modules/systemjs/dist/system-polyfills.src.js",
 		"node_modules/systemjs/dist/system.src.js",
 		"node_modules/rxjs/bundles/Rx.js",
+		"node_modules/jquery/dist/jquery.min.js",
 	],
 };
 
