@@ -54,11 +54,24 @@ export class DashboardView implements OnInit, OnDestroy {
 		document.querySelector( "body" ).classList.add( "view--dashboard" );
 
 		this.loadingProjects = true;
-		this.loadUsers().then( () => {
+
+		this.initializeServices().then( () => {
+			return this.loadUsers();
+		} ).then( () => {
 			return this.loadProjects();
 		} ).then( () => {
 			this.loadingProjects = false;
 		} );
+	}
+
+	initializeServices():Promise<any> {
+		let promises:Promise<any>[] = [
+			this.projectService.init(),
+			this.taskService.init(),
+			this.userService.init()
+		];
+
+		return Promise.all( promises );
 	}
 
 	ngOnDestroy():void {
@@ -83,6 +96,7 @@ export class DashboardView implements OnInit, OnDestroy {
 
 	onTaskCreate( task:Task ):void {
 		this.tasks.unshift( task );
+		this.loadTaskLabels( this.tasks );
 		this.filterTasks();
 		this.disableTaskCreationMode();
 		this.selectedTask = task;

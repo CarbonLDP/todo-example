@@ -4,6 +4,11 @@ import { Project } from "app/models/project";
 import { TaskService } from "app/services";
 
 export class CarbonTaskService implements TaskService.Class {
+	init():Promise<any> {
+		// Nothing to initialize
+		return Promise.resolve();
+	}
+
 	getAll( project ) {
 		// TODO
 

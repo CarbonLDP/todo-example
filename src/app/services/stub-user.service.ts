@@ -93,6 +93,11 @@ export class StubUserService implements UserService.Class {
 		];
 	}
 
+	init():Promise<any> {
+		// Nothing to initialize
+		return Promise.resolve();
+	}
+
 	getAll():Promise<User[]> {
 		return new Promise( ( resolve:( result:User[] ) => void, reject:() => void ) => {
 			setTimeout( () => {
