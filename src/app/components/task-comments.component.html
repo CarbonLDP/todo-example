@@ -21,7 +21,7 @@
      *ngFor="let comment of comments"
      [comment]="comment"
 ></div>
-<div
+<div class="ui comment"
 	*ngIf="! comments || comments.length === 0"
 >
 	This task doesn't have comments yet

@@ -21,6 +21,12 @@ export class StubTaskService implements TaskService.Class {
 					dueDate: new Date( 10, 11, 2016 ),
 					project: projects[ 0 ],
 
+					labels: [
+						"Something",
+						"Everything",
+						"Nothing"
+					],
+
 					comments: [
 						{
 							author: {
@@ -60,7 +66,41 @@ export class StubTaskService implements TaskService.Class {
 							createdOn: new Date( 8, 10, 2016 ),
 						}
 					]
-				}
+				},
+				{
+					title: "Analyze the intense depth of the codebase",
+					description: "Gaze into it while your thoughts drift away",
+
+					dueDate: new Date( 10, 11, 2016 ),
+					project: projects[ 0 ],
+
+					labels: [
+						"Something",
+						"Yo"
+					]
+				},
+				{
+					title: "Analyze the intense depth of the codebase",
+					description: "Gaze into it while your thoughts drift away",
+
+					dueDate: new Date( 10, 11, 2016 ),
+					project: projects[ 0 ],
+				},
+			] );
+
+			this.projectTasks.set( projects[ 1 ], [
+				{
+					title: "Analyze the intense depth of the codebase",
+					description: "Gaze into it while your thoughts drift away",
+
+					dueDate: new Date( 10, 11, 2016 ),
+					project: projects[ 1 ],
+
+					labels: [
+						"Project 2",
+						"Yo"
+					]
+				},
 			] );
 
 			this.projectTasks.forEach( ( tasks:Task[], project:Project ) => {

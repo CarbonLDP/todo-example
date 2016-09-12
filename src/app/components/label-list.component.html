@@ -5,7 +5,9 @@
 		</div>
 	</div>
 </div>
-<div class="label-list__content segment-panel__content ui attached segment">
+<div class="label-list__content segment-panel__content ui attached segment"
+     [class.loading]="loading"
+>
 	<div class="ui middle aligned selection list">
 		<div class="label-item item"
 		     *ngFor="let label of labels"

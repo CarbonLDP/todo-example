@@ -41,6 +41,8 @@ export class DashboardView implements OnInit, OnDestroy {
 	private loadingTasks:boolean = false;
 	private selectedProject:Project;
 	private selectedTask:Task;
+	private selectedLabels:Label[];
+	private filteredTasks:Set<Task>;
 
 	private taskCreationModeEnabled:boolean = false;
 
@@ -58,14 +60,19 @@ export class DashboardView implements OnInit, OnDestroy {
 	}
 
 	onSelectedProjectChange( project:Project ):void {
-		this.selectedProject = project;
-		this.selectedTask = null;
-
-		this.loadProjectTasks();
+		this.selectProject( project );
 	}
 
 	onProjectCreate( project:Project ):void {
 		this.projects.push( project );
+	}
+
+	onSelectedLabelsChange( selectedLabels:Label[] ):void {
+		if( ! this.selectedProject ) return;
+
+		this.selectedLabels = selectedLabels;
+
+		this.filterTasks();
 	}
 
 	onTaskCreate( task:Task ):void {
@@ -97,16 +104,60 @@ export class DashboardView implements OnInit, OnDestroy {
 
 	selectProject( project:Project ):void {
 		this.selectedProject = project;
+		this.selectedTask = null;
 
-		this.loadProjectTasks();
+		this.loadProjectTasks().then( ( tasks ) => {
+			return this.loadTaskLabels( tasks );
+		} ).then( () => {
+			this.filterTasks();
+		} );
 	}
 
-	loadProjectTasks():void {
+	loadProjectTasks():Promise<Task[]> {
 		this.loadingTasks = true;
-		this.taskService.getAll( this.selectedProject ).then( ( tasks ) => {
+		return this.taskService.getAll( this.selectedProject ).then( ( tasks ) => {
 			this.loadingTasks = false;
 			this.tasks = tasks;
+
+			return this.tasks;
 		} );
+	}
+
+	loadTaskLabels( tasks:Task[] ):Promise<any> {
+		let labelMap:Map<string, Task[]> = new Map<string, Task[]>();
+		tasks.filter( task => task.labels ).forEach( task => {
+			task.labels.forEach( label => {
+				if( ! labelMap.has( label ) ) labelMap.set( label, [] );
+				labelMap.get( label ).push( task );
+			} );
+		} );
+
+		this.labels = [];
+		labelMap.forEach( ( tasks:Task[], name:string ) => {
+			this.labels.push( {
+				name: name,
+				tasks: tasks
+			} );
+		} );
+
+		return Promise.resolve( null );
+	}
+
+	filterTasks():void {
+		if( ! this.selectedProject || ! this.tasks ) return;
+
+		if( ! this.selectedLabels || this.selectedLabels.length === 0 ) {
+			this.filteredTasks = new Set<Task>( this.tasks );
+		} else {
+			this.filteredTasks = new Set<Task>();
+			this.selectedLabels.forEach( ( selectedLabel:Label ) => selectedLabel.tasks
+				.forEach( ( task:Task ) => this.filteredTasks.add( task ) )
+			);
+		}
+
+		if( this.selectedTask ) {
+			if( ! this.filteredTasks.has( this.selectedTask ) ) this.selectedTask = null;
+		}
 	}
 }
 

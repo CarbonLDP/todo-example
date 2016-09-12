@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Inject, ViewChild } from "@angular/core";
+import { Component, Input, OnInit, Inject, ViewChild, OnChanges, SimpleChanges, SimpleChange } from "@angular/core";
 import { NgForm } from "@angular/forms";
 
 import { Comment } from "app/models/Comment";
@@ -21,7 +21,7 @@ import template from "./task-comments.component.html!text";
 		class: "ui comments"
 	}
 } )
-export class TaskCommentsComponent implements OnInit {
+export class TaskCommentsComponent implements OnInit, OnChanges {
 	@Input( "task" ) task:Task;
 
 	@ViewChild( NgForm ) private form:NgForm;
@@ -36,7 +36,20 @@ export class TaskCommentsComponent implements OnInit {
 	}
 
 	ngOnInit():void {
-		if( ! this.task.comments ) return;
+		this.reloadTask( this.task );
+	}
+
+	ngOnChanges( changes:SimpleChanges ):void {
+		if( changes[ "task" ] ) {
+			this.reloadTask( changes[ "task" ].currentValue );
+		}
+	}
+
+	private reloadTask( task:Task ):void {
+		if( ! this.task || ! this.task.comments ) {
+			this.comments = [];
+			return;
+		}
 
 		this.comments = this.task.comments.slice( 0 );
 		this.comments.sort( ( commentA:Comment, commentB:Comment ) => {

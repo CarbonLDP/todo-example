@@ -93,8 +93,18 @@ body.view--dashboard app {
     flex-direction: column;
 }
 
+.task-panel__content.ui.segment {
+    padding: 1em;
+}
+
 .task-panel__content > .ui.grid {
-    flex: 1;
+    margin: 0;
+    flex: 1 1 100%;
+}
+
+.task-panel__content > .ui.grid > .column {
+    padding: 0;
+    overflow: auto;
 }
 
 .task-list {

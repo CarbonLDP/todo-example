@@ -16,12 +16,12 @@
 </p>
 <div class="middle aligned">
 	Labels:
-	<template *ngIf="task.labels">
+	<template [ngIf]="task.labels">
 		<a class="ui label"
 		   *ngFor="let label of task.labels"
-		>{{task.name}}</a>
+		>{{label}}</a>
 	</template>
-	<template *ngIf="! task.labels">
+	<template [ngIf]="! task.labels || task.labels.length === 0">
 		None
 	</template>
 </div>

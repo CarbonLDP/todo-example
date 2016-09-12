@@ -13,6 +13,6 @@ export interface Task {
 
 	dueDate:Date;
 
-	labels?:Label[];
+	labels?:string[];
 	comments?:Comment[];
 }

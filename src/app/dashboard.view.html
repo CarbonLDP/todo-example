@@ -8,7 +8,9 @@
 		     (projectCreate)="onProjectCreate( $event )"
 		></div>
 		<div class="label-list"
-		     [(labels)]="labels"
+		     [labels]="labels"
+		     [loading]="loadingProjects || loadingTasks"
+		     (selectedLabelsChange)="onSelectedLabelsChange( $event )"
 		></div>
 	</aside>
 	<div class="task-panel segment-panel thirteen wide column"
@@ -21,7 +23,7 @@
 				</div>
 				<div class="right aligned column">
 					<!--<button class="ui basic green tiny icon button">-->
-						<!--<i class="plus icon"></i>-->
+					<!--<i class="plus icon"></i>-->
 					<!--</button>-->
 				</div>
 			</div>
@@ -36,11 +38,11 @@
 						New Task
 					</button>
 					<div class="task-list"
-					     [tasks]="tasks"
+					     [tasks]="filteredTasks"
 					     [(selectedTask)]="selectedTask"
 					></div>
 					<div class="ui active inverted dimmer"
-						*ngIf="taskCreationModeEnabled || loadingTasks"
+					     *ngIf="taskCreationModeEnabled || loadingTasks"
 					>
 						<div class="ui text loader"
 						     *ngIf="loadingTasks"

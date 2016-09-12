@@ -50,9 +50,7 @@ export class TaskFormComponent implements OnInit {
 		this.setTaskDueDate();
 
 		this.loading = true;
-		let labelStrings:string[] = this.getLabelStrings();
-
-		// TODO: Get or create labels
+		this.task.labels = this.getLabelStrings();
 
 		this.taskService.create( this.project, this.task ).then( ( task ) => {
 			this.loading = false;
