@@ -27,8 +27,10 @@ export class TaskCommentsComponent implements OnInit, OnChanges {
 	@ViewChild( NgForm ) private form:NgForm;
 
 	private comments:Comment[];
+	private newComment:Comment;
 	private model:Comment;
 	private loading:boolean;
+	private active:boolean = true;
 
 	constructor( @Inject( AuthService.Token ) private authService:AuthService.Class,
 	             @Inject( TaskService.Token ) private taskService:TaskService.Class ) {
@@ -61,6 +63,11 @@ export class TaskCommentsComponent implements OnInit, OnChanges {
 		this.model = <any>{};
 	}
 
+	private resetForm():void {
+		this.active = false;
+		setTimeout( () => this.active = true, 0 );
+	}
+
 	private onCommentFormSubmit():void {
 		if( ! this.form.form.valid ) return;
 
@@ -78,8 +85,12 @@ export class TaskCommentsComponent implements OnInit, OnChanges {
 			this.comments.unshift( comment );
 
 			this.resetModel();
+			this.resetForm();
 
 			this.loading = false;
+
+			this.newComment = comment;
+			setTimeout( () => this.newComment = null, 1000 );
 		} );
 	}
 }

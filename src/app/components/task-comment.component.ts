@@ -52,6 +52,7 @@ export class TaskCommentComponent implements OnInit {
 	@ViewChildren( ContentTextarea ) contentTextarea:QueryList<ContentTextarea>;
 
 	private replies:Comment[];
+	private newReply:Comment;
 	private replyModeEnabled:boolean = false;
 	private model:Comment;
 	private loading:boolean = false;
@@ -62,7 +63,10 @@ export class TaskCommentComponent implements OnInit {
 	}
 
 	ngOnInit():void {
-		if( ! this.comment.replies ) return;
+		if( ! this.comment.replies ) {
+			this.replies = [];
+			return;
+		}
 
 		this.replies = this.comment.replies.slice( 0 );
 		this.replies.sort( ( commentA:Comment, commentB:Comment ) => {
@@ -102,6 +106,7 @@ export class TaskCommentComponent implements OnInit {
 		comment.createdOn = new Date();
 		comment.author = this.authService.getAuthenticatedUser();
 
+		if( ! this.comment.replies ) this.comment.replies = [];
 		this.comment.replies.push( comment );
 
 		this.taskService.save( this.task ).then( ( task:Task ) => {
@@ -110,6 +115,9 @@ export class TaskCommentComponent implements OnInit {
 			this.disableReplyMode();
 
 			this.loading = false;
+
+			this.newReply = comment;
+			setTimeout( () => this.newReply = null, 1000 );
 		} );
 	}
 }

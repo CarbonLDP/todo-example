@@ -38,10 +38,14 @@
 		</button>
 		<button type="button" class="ui button"
 		        (click)="disableReplyMode()"
-		>Cancel</button>
+		>Cancel
+		</button>
 	</form>
 	<div class="task-comment"
 	     *ngFor="let reply of replies"
 	     [comment]="reply"
+	     [class.animating]="reply === newReply"
+	     [class.transition]="reply === newReply"
+	     [class.shake]="reply === newReply"
 	></div>
 </div>
