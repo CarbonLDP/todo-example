@@ -51,6 +51,9 @@ export class TaskCommentsComponent implements OnInit, OnChanges {
 		if( ! this.task || ! this.task.comments ) {
 			this.comments = [];
 			return;
+		} else if( ! Array.isArray( this.task.comments ) ) {
+			this.comments = [];
+			return;
 		}
 
 		this.comments = this.task.comments.slice( 0 );
@@ -78,6 +81,9 @@ export class TaskCommentsComponent implements OnInit, OnChanges {
 		this.loading = true;
 		comment.createdOn = new Date();
 		comment.author = this.authService.getAuthenticatedUser();
+
+		if( ! this.task.comments ) this.task.comments = [];
+		else if( ! Array.isArray( this.task.comments ) ) this.task.comments = [ this.task.comments ];
 
 		this.task.comments.push( comment );
 

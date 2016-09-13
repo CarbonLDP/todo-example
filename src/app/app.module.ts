@@ -34,15 +34,15 @@ if( SERVICES === "carbon" ) {
 	authProvider.useClass = ExtendedCarbonAuthService;
 	serviceProviders.push( [
 		{
-			provide: ProjectService,
+			provide: ProjectService.Token,
 			useClass: CarbonProjectService,
 		},
 		{
-			provide: TaskService,
+			provide: TaskService.Token,
 			useClass: CarbonTaskService,
 		},
 		{
-			provide: UserService,
+			provide: UserService.Token,
 			useClass: CarbonUserService,
 		}
 	] );

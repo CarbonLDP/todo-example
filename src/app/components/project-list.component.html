@@ -35,7 +35,18 @@
 		     [class.project-item--selected]="project === selectedProject"
 		>
 			<div class="right floated content">
-				<div class="ui label">{{ project.tasks ? project.tasks.length : 0 }}</div>
+				<div class="ui label"
+				     *ngIf="! project.tasks"
+				>0
+				</div>
+				<div class="ui label"
+				     *ngIf="project.tasks && ! isArray( project.tasks )"
+				>1
+				</div>
+				<div class="ui label"
+				     *ngIf="project.tasks && isArray( project.tasks )"
+				>{{ project.tasks.length }}
+				</div>
 			</div>
 			<div class="project-item__title middle aligned content">
 				{{ project.title }}
@@ -60,6 +71,7 @@
 		<button class="ui green button" type="submit">Create</button>
 		<button class="ui button" type="button"
 		        (click)="disableCreationMode()"
-		>Cancel</button>
+		>Cancel
+		</button>
 	</form>
 </div>

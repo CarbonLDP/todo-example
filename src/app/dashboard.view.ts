@@ -154,6 +154,8 @@ export class DashboardView implements OnInit, OnDestroy {
 	loadTaskLabels( tasks:Task[] ):Promise<any> {
 		let labelMap:Map<string, Task[]> = new Map<string, Task[]>();
 		tasks.filter( task => task.labels ).forEach( task => {
+			if( typeof task.labels === "string" ) task.labels = [ task.labels ];
+
 			task.labels.forEach( label => {
 				if( ! labelMap.has( label ) ) labelMap.set( label, [] );
 				labelMap.get( label ).push( task );

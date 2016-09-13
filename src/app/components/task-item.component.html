@@ -18,10 +18,19 @@
 	<div class="task-item__label-list ten wide column"
 	     *ngIf="task.labels"
 	>
-		<div class="ui label"
-		     *ngFor="let label of task.labels"
+		<template
+			[ngIf]="! isArray( task.labels )"
 		>
-			{{label}}
-		</div>
+			<div class="ui label">{{task.labels}}</div>
+		</template>
+		<template
+			[ngIf]="isArray( task.labels )"
+		>
+			<div class="ui label"
+			     *ngFor="let label of task.labels"
+			>
+				{{label}}
+			</div>
+		</template>
 	</div>
 </div>

@@ -26,7 +26,10 @@
 </p>
 <div class="middle aligned">
 	Labels:
-	<template [ngIf]="task.labels">
+	<template [ngIf]="task.labels && ! isArray( task.labels )">
+		<a class="ui label">{{task.labels}}</a>
+	</template>
+	<template [ngIf]="task.labels && isArray( task.labels )">
 		<a class="ui label"
 		   *ngFor="let label of task.labels"
 		>{{label}}</a>

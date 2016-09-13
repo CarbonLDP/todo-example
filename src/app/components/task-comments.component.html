@@ -21,6 +21,7 @@
 <div class="task-comment"
      *ngFor="let comment of comments"
      [comment]="comment"
+     [task]="task"
      [class.animating]="comment === newComment"
      [class.transition]="comment === newComment"
      [class.shake]="comment === newComment"
