@@ -41,13 +41,11 @@
 	     [class.error]="! assignedTo.valid && assignedTo.touched"
 	>
 		<label>Assigned To</label>
-		<div class="ui left icon input">
-			<input type="text" placeholder="John Snow" name="assignee"
-			       [(ngModel)]="model.assignedTo"
-			       #assignedTo="ngModel"
-			>
-			<i class="user icon"></i>
-		</div>
+		<select class="ui search dropdown" name="assignee"
+		        [(ngModel)]="model.assignedTo"
+		        #assignedTo="ngModel">
+			<option *ngFor="let user of users; let i = index" [value]="i">{{user.name}}</option>
+		</select>
 	</div>
 	<div class="field"
 	     [class.error]="! labels.valid && labels.touched"
@@ -64,5 +62,6 @@
 	<button type="submit" class="ui green button">Create</button>
 	<button type="button" class="ui button"
 	        (click)="cancel()"
-	>Cancel</button>
+	>Cancel
+	</button>
 </form>

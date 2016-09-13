@@ -507,6 +507,11 @@ export class StubTaskService implements TaskService.Class {
 		} );
 	}
 
+	init():Promise<any> {
+		// Nothing to initialize
+		return Promise.resolve();
+	}
+
 	getAll( project:Project ):Promise < Task[ ] > {
 		return this.ready.then( () => {
 			return new Promise( ( resolve:( result:Project[] ) => void, reject:() => void ) => {

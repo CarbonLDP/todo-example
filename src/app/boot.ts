@@ -4,13 +4,12 @@
 import { NgModuleRef, enableProdMode } from "@angular/core";
 import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 
-import { AppModule } from "./app.module";
-
 import { activeContext, appInjector } from "angular2-carbonldp/boot";
 
 import Carbon from "carbonldp/Carbon";
 
-import { DEBUG, CARBON_DOMAIN, CARBON_HTTPS } from "./config";
+import { AppModule } from "app/app.module";
+import { DEBUG, SERVICES, CARBON_APP, CARBON_DOMAIN, CARBON_HTTPS } from "app/config";
 
 let carbon:Carbon = new Carbon();
 // Here you can configure your carbon context, extend your ObjectSchemas, etc.
@@ -19,8 +18,12 @@ carbon.setSetting( "domain", CARBON_DOMAIN );
 carbon.setSetting( "http.ssl", CARBON_HTTPS );
 
 // Uncomment the next statement and replace the string with your app slug. After that, delete the Error below.
-activeContext.initialize( carbon );
-// throw new Error( "You haven't declared your app slug, please open boot.ts and change line 23" );
+if( SERVICES === "stubbed" ) activeContext.initialize( carbon );
+else {
+	if( CARBON_APP === "your-app-slug/" ) throw new Error( "You haven't declared your app slug!" );
+	activeContext.initialize( carbon, CARBON_APP );
+}
+//
 
 if( ! DEBUG ) enableProdMode();
 

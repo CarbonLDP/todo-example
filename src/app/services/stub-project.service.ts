@@ -29,6 +29,11 @@ export class StubProjectService implements ProjectService.Class {
 		);
 	}
 
+	init():Promise<any> {
+		// Nothing to initialize
+		return Promise.resolve();
+	}
+
 	getAll():Promise<Project[]> {
 		return new Promise( ( resolve:( result:Project[] ) => void, reject:() => void ) => {
 			setTimeout( () => {

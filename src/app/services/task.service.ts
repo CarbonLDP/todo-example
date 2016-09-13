@@ -4,6 +4,8 @@ import { Task } from "app/models/task";
 import { Project } from "app/models/project";
 
 export interface Class {
+	init():Promise<any>;
+
 	getAll( project:Project ):Promise<Task[]>;
 
 	create( project:Project, task:Task ):Promise<Task>;

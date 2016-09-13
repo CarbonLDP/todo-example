@@ -57,6 +57,7 @@
 					<div class="task-form"
 					     *ngIf="taskCreationModeEnabled"
 					     [project]="selectedProject"
+					     [users]="users"
 					     (save)="onTaskCreate( $event )"
 					     (cancel)="disableTaskCreationMode()"
 					>
