@@ -66,6 +66,9 @@ export class TaskCommentComponent implements OnInit {
 		if( ! this.comment.replies ) {
 			this.replies = [];
 			return;
+		} else if( ! Array.isArray( this.comment.replies ) ) {
+			this.replies = [ this.comment.replies ];
+			return;
 		}
 
 		this.replies = this.comment.replies.slice( 0 );
@@ -107,6 +110,8 @@ export class TaskCommentComponent implements OnInit {
 		comment.author = this.authService.getAuthenticatedUser();
 
 		if( ! this.comment.replies ) this.comment.replies = [];
+		else if( ! Array.isArray( this.comment.replies ) ) this.comment.replies = [ this.comment.replies ];
+
 		this.comment.replies.push( comment );
 
 		this.taskService.save( this.task ).then( ( task:Task ) => {
@@ -118,7 +123,7 @@ export class TaskCommentComponent implements OnInit {
 
 			this.newReply = comment;
 			setTimeout( () => this.newReply = null, 1000 );
-		} );
+		} ).catch( console.error );
 	}
 }
 

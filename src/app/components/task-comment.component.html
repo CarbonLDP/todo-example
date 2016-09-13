@@ -1,5 +1,11 @@
 <a class="avatar">
-	<img [src]="comment.author.avatar">
+	<img
+		*ngIf="comment.author.avatar"
+		[src]="comment.author.avatar"
+	>
+	<img src="assets/images/wireframe.png"
+	     *ngIf="! comment.author.avatar"
+	>
 </a>
 <div class="content">
 	<a class="author">{{comment.author.name}}</a>
@@ -44,6 +50,7 @@
 	<div class="task-comment"
 	     *ngFor="let reply of replies"
 	     [comment]="reply"
+	     [task]="task"
 	     [class.animating]="reply === newReply"
 	     [class.transition]="reply === newReply"
 	     [class.shake]="reply === newReply"

@@ -20,6 +20,10 @@ export class TaskItemComponent {
 	@Input( "task" ) task:Task;
 
 	constructor() {}
+
+	private isArray( value:any ):boolean {
+		return Array.isArray( value );
+	}
 }
 
 export default TaskItemComponent;

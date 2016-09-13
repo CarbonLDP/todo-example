@@ -60,8 +60,12 @@ export class ProjectListComponent {
 			this.loading = false;
 			this.creationModeEnabled = false;
 
-			this.projectCreate.emit( project);
+			this.projectCreate.emit( project );
 		} );
+	}
+
+	private isArray( value:any ):boolean {
+		return Array.isArray( value );
 	}
 }
 
