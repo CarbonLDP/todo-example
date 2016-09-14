@@ -8,6 +8,13 @@ export interface Class {
 
 	getAll( project:Project ):Promise<Task[]>;
 
+	/*
+		task = {
+			title: "Example title",
+			description: "...",
+			// ... etc
+		}
+	 */
 	create( project:Project, task:Task ):Promise<Task>;
 
 	save( task:Task ):Promise<Task>;

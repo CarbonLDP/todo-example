@@ -7,6 +7,11 @@ export interface Class {
 
 	getAll():Promise<Project[]>;
 
+	/*
+		project = {
+			title: "Example title"
+		}
+	 */
 	create( project:Project ):Promise<Project>;
 }
 

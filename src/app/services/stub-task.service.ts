@@ -22,7 +22,6 @@ export class StubTaskService implements TaskService.Class {
 		DEPLOYMENT: "Deployment",
 		ANALYSIS: "Analysis",
 		WEB: "Web",
-		MEETING: "Meeting",
 		DESIGN: "Design",
 		MOBILE: "Mobile"
 	};
@@ -132,7 +131,6 @@ export class StubTaskService implements TaskService.Class {
 									author: this.users[ 3 ],
 									content: "That's right, can confirm. No further complications detected for this task.",
 									createdOn: new Date( "02/07/2016 18:23:45" ),
-									task: 1,
 									replies: []
 								}
 							]
@@ -350,7 +348,7 @@ export class StubTaskService implements TaskService.Class {
 						{
 							author: this.users[ 12 ],
 							content: "the meeting with the client has been very productive, i'll send an email with the specifications",
-							createdOn: "2015-11-20 17:59:50",
+							createdOn: new Date( 2015, 12, 20 ),
 							replies: [],
 						},
 					]

@@ -12,19 +12,15 @@ export class StubProjectService implements ProjectService.Class {
 		this._projects.push(
 			{
 				title : "APU - Acme Users Portal Enhancements",
-				description : "Improvements needed in order to enhance the user experience of visitors to the Acme users portal. The only allowed changes to backend are those who can speed up the retrieval of information.",
 			},
 			{
 				title : "Groundos - Ground Transportation Ticketing System",
-				description : "A whole solution including a mobile app and a web portal to buy and sell tickets to multiple buses.",
 			},
 			{
 				title : "Globex - Product managment for retail",
-				description : "",
 			},
 			{
 				title : "Game - The notebook",
-				description : "",
 			}
 		);
 	}
